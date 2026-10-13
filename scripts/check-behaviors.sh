@@ -67,6 +67,20 @@ glob_reach() {
 }
 check "** glob reaches steps but not layers" glob_reach
 
+# Boards: shorthand layer titles drop inherited classes; direction and legends are per board.
+printf 'classes: {c: {style.fill: "#ABCDEF"}}\nlayers: {\n  short: Short title {n: N {class: c}}\n  long: {label: Long title; n: N {class: c}}\n}\n' > board.d2
+shorthand_drops() { rm -rf b; d2 board.d2 b.svg && ! grep -qi abcdef b/short.svg && grep -qi abcdef b/long.svg; }
+check "layer titled in shorthand drops inherited classes; label: keeps them" shorthand_drops
+printf 'direction: right\na -> b\nlayers: {x: {a -> b}}\n' > dir.d2
+dir_not_inherited() {
+  d2 --target='' dir.d2 root.txt && d2 --target='layers.x' dir.d2 layer.txt &&
+  [ "$(grep -c '[ab] ' root.txt)" -lt "$(grep -c '[ab] ' layer.txt)" ]
+}
+check "layers do not inherit direction" dir_not_inherited
+printf 'vars: {d2-legend: {k: Key entry}}\na\nlayers: {x: {b}}\n' > legend.d2
+legend_per_board() { rm -rf l; d2 legend.d2 l.svg && grep -q 'Key entry' l/index.svg && ! grep -q 'Key entry' l/x.svg; }
+check "d2-legend renders only on the board that declares it" legend_per_board
+
 # CLI flags.
 h_is_host() { ! d2 -h; }
 check "d2 -h means --host (needs an argument), not help" h_is_host

@@ -1,6 +1,6 @@
 {
   "name": "d2-diagrams",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Write, render and verify D2 (d2lang) diagrams: syntax references checked against the d2 CLI, plus output-safety and silent-failure guardrails.",
   "author": {
     "name": "Bitmvr Industries",

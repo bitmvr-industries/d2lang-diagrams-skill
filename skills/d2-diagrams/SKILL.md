@@ -11,7 +11,7 @@ D2 is a text-to-diagram language. Write `.d2` source and render it with the `d2`
 
 ## Workflow
 
-1. Write the `.d2` file. Load a reference file below for any feature you are not certain of.
+1. If the diagram shows a system's architecture (services, data stores, deployments, external systems), read `references/architecture-recipes.md` first and follow its deliverable. Then write the `.d2` file, loading a reference file below for any feature you are not certain of.
 2. `d2 fmt file.d2`
 3. Render a check PNG into a scratch directory: `d2 file.d2 "$SCRATCH/check.png"`. This is the real compile. `d2 validate` passes bad shapes, bad colors, out-of-range values, undefined vars, engine-unsupported features, and reserved-word collisions.
 4. Read the PNG and compare it to the request: every node, edge and label present, nothing duplicated, no stray shapes, readable layout. For multi-board files, check one PNG per board: `--target=''` (root only), `--target='layers.x'`, `--target='steps.2'`. Linked shapes show a numbered badge and footnote naming the target board.
@@ -43,6 +43,7 @@ Unquoted, `top: Signups` is parsed as a coordinate and `label: X` silently relab
 - Grids: `grid-columns` alone fills **column by column** (`a c e / b d f`). For reading order, set `grid-rows` before `grid-columns`. Cells cannot span; size them with `width`/`height`.
 - `direction` inside a container is ignored by dagre and ELK; only TALA (bundled, `layout-engine: tala`) honors it.
 - Globs: `**` reaches into steps and scenarios but **not layers**; use `***` to cover every board. Unknown filters (`&bogus`) match nothing.
+- Boards: title a layer with `label:` inside its block. The shorthand `layers: {x: Title {...}}` drops every class inherited from the root. Layers also don't inherit `direction`, and a `d2-legend` renders only on the board that declares it.
 - Board links are relative to the board they are written in: from inside a layer, a sibling is `_.layers.w`; `root.layers.w` is absolute. Broken links and board names containing `.` produce no error, just a dead link.
 
 ## References
@@ -51,6 +52,7 @@ Load only what the task needs. Each file opens with a table of contents and ends
 
 | File | Load when |
 |---|---|
+| `references/architecture-recipes.md` | any architecture or system diagram: levels as linked boards, element classes, connection labels, boundaries, legend, worked example |
 | `references/basics.md` | shapes catalog, connections, arrowheads, edge indexing, containers, `_`, quoting, markdown/code/LaTeX blocks, icons, comments |
 | `references/special-diagrams.md` | `sql_table`, UML `class`, `sequence_diagram`, grid diagrams |
 | `references/styling.md` | every `style.*` key and range, themes and IDs, theme overrides, classes, width/height, `near`/positions, sketch, tooltips/links, fonts, legend |
