@@ -13,8 +13,9 @@ Install d2 first: `brew install d2` (or see [d2lang.com/tour/install](https://d2
 ```bash
 claude plugin marketplace add git@github.com:bitmvr-industries/d2lang-diagrams-skill.git
 claude plugin install d2-diagrams@d2lang-diagrams-skill
-# later, to pick up new releases:
+# later, to pick up new releases (refresh the catalog, then the plugin; restart Claude Code after):
 claude plugin marketplace update d2lang-diagrams-skill
+claude plugin update d2-diagrams@d2lang-diagrams-skill
 ```
 
 **Other agents** (copies the skill; re-run to update):
