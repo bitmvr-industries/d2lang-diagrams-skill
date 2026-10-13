@@ -1,0 +1,14 @@
+{
+  "name": "d2-diagrams",
+  "version": "0.1.0",
+  "description": "Write, render and verify D2 (d2lang) diagrams: syntax references checked against the d2 CLI, plus output-safety and silent-failure guardrails.",
+  "author": {
+    "name": "Bitmvr Industries",
+    "email": "jesse.riddle@bitmvr.com"
+  },
+  "repository": "https://github.com/bitmvr-industries/d2lang-diagrams-skill",
+  "keywords": ["d2", "d2lang", "diagrams", "architecture", "agent-skills"],
+  "experimental": {
+    "evals": "evals"
+  }
+}

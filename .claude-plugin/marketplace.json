@@ -1,0 +1,14 @@
+{
+  "name": "d2lang-diagrams-skill",
+  "owner": {
+    "name": "Bitmvr Industries"
+  },
+  "description": "D2 (d2lang) diagram skill",
+  "plugins": [
+    {
+      "name": "d2-diagrams",
+      "source": "./",
+      "description": "Write, render and verify D2 (d2lang) diagrams."
+    }
+  ]
+}

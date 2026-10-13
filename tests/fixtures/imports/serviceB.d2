@@ -1,0 +1,8 @@
+aws vault: {key; token}
+stripe: {customer id}
+aws vault.key -> data
+stripe.customer id -> data
+data.link: layers.data      # resolves relative to the board this file lands in
+layers: {
+  data: @data
+}
